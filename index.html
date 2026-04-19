@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CCH Zone ✨</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <style>
+        :root {
+            --bg-dark: #0f172a;
+            --card-bg: rgba(30, 41, 59, 0.95);
+            --accent-pink: #ff79c6;
+            --accent-cyan: #8be9fd;
+            --glow: 0 0 15px rgba(255, 121, 198, 0.6);
+        }
+
+        body { 
+            background-color: var(--bg-dark);
+            color: #f8fafc;
+            font-family: 'Poppins', sans-serif;
+            min-height: 100vh;
+            margin: 0;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* --- ANIMASI BACKGROUND IKON GAME (PASTI JALAN) --- */
+        .bg-animate {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1;
+            background: radial-gradient(circle at 50% 50%, #1e1b4b, #0f172a);
+            overflow: hidden;
+        }
+
+        .game-icons {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            overflow: hidden; margin: 0; padding: 0;
+        }
+
+        .game-icons li {
+            position: absolute; display: block; list-style: none;
+            width: 30px; height: 30px; 
+            animation: animateGame 20s linear infinite; bottom: -150px;
+            font-size: 1.8rem; /* Ukuran Ikon */
+            opacity: 0.1; /* Transparan biar gak ngganggu teks */
+        }
+
+        /* Animasi Gerak Ke Atas + Mutar */
+        @keyframes animateGame {
+            0% { transform: translateY(0) rotate(0deg); opacity: 0.1; }
+            50% { opacity: 0.3; }
+            100% { transform: translateY(-1200px) rotate(720deg); opacity: 0.0; }
+        }
+
+        /* Variasi ukuran, posisi, dan delay ikon game */
+        .game-icons li:nth-child(1){ left: 25%; animation-delay: 0s; }
+        .game-icons li:nth-child(2){ left: 10%; animation-delay: 3s; animation-duration: 15s; font-size: 1.2rem; }
+        .game-icons li:nth-child(3){ left: 70%; animation-delay: 5s; }
+        .game-icons li:nth-child(4){ left: 40%; animation-delay: 0s; animation-duration: 25s; font-size: 2.5rem; }
+        .game-icons li:nth-child(5){ left: 65%; animation-delay: 0s; }
+        .game-icons li:nth-child(6){ left: 85%; animation-delay: 7s; animation-duration: 18s; font-size: 1.5rem;}
+        .game-icons li:nth-child(7){ left: 55%; animation-delay: 2s; }
+
+        /* --- Header Section --- */
+        .group-header { text-align: center; padding: 40px 15px; position: relative; }
+
+        .group-logo {
+            width: 110px; height: 110px; border-radius: 50%;
+            border: 4px solid var(--accent-pink);
+            box-shadow: var(--glow); object-fit: cover;
+            margin-bottom: 15px;
+        }
+
+        .header-title { 
+            font-weight: 800; color: var(--accent-cyan);
+            text-shadow: 0 0 10px rgba(139, 233, 253, 0.5);
+            font-size: 2.2rem; margin-bottom: 2px;
+        }
+
+        .sub-header {
+            color: #ffffff !important;
+            font-weight: 600;
+            background: rgba(255, 121, 198, 0.2);
+            display: inline-block;
+            padding: 2px 15px;
+            border-radius: 20px;
+            border: 1px solid var(--accent-pink);
+            font-size: 0.9rem;
+            box-shadow: var(--glow);
+        }
+
+        /* --- Container --- */
+        .container { max-width: 800px; padding-bottom: 50px; position: relative; }
+
+        .input-section {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border-radius: 20px; padding: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            margin-bottom: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        textarea {
+            background: rgba(15, 23, 42, 0.8) !important;
+            border: 1px solid var(--accent-cyan) !important;
+            color: white !important; border-radius: 12px !important;
+        }
+
+        .btn-save {
+            background: linear-gradient(45deg, var(--accent-pink), #bd93f9);
+            border: none; color: white; font-weight: bold;
+            border-radius: 12px; padding: 12px; width: 100%;
+            margin-top: 15px;
+        }
+
+        /* Card List */
+        .invite-card {
+            background: rgba(30, 41, 59, 0.95);
+            border-radius: 18px; margin-bottom: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            overflow: hidden;
+        }
+        
+        .card-header-info {
+            background: rgba(255, 255, 255, 0.05); padding: 10px 20px;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+
+        .full-text-area {
+            padding: 15px 20px; max-height: 250px; overflow-y: auto;
+            white-space: pre-wrap; font-size: 0.85rem;
+            color: #f1f5f9; background: rgba(0,0,0,0.2);
+        }
+
+        .date-badge {
+            background: var(--accent-cyan); color: #0f172a;
+            padding: 3px 12px; border-radius: 20px; font-weight: bold;
+        }
+
+        .action-bar { padding: 12px 20px; display: flex; justify-content: flex-end; gap: 12px; }
+
+        .done-card { border: 2px solid #50fa7b !important; opacity: 0.6; }
+        .empty-msg { color: var(--accent-pink); text-align: center; font-weight: bold; margin-top: 70px; text-shadow: var(--glow); }
+    </style>
+</head>
+<body>
+
+<div class="bg-animate">
+    <ul class="game-icons">
+        <li>🎮</li>
+        <li>🕹</li>
+        <li>🎮</li>
+        <li>🕹</li>
+        <li>🎮</li>
+        <li>🕹</li>
+        <li>🎮</li>
+    </ul>
+</div>
+
+<div class="group-header">
+    <img src="CCH.jpg" alt="Logo Rada" class="group-logo">
+    <h1 class="header-title">CCH ZONE</h1>
+    <p class="sub-header">
+        <i class="bi bi-controller"></i> Basecamp Undangan Mabar CCH Fams<i class="bi bi-stars"></i>
+    </p>
+</div>
+
+<div class="container">
+    <div class="input-section">
+        <label class="form-label small text-info">Paste Undangan disini:</label>
+        <textarea id="rawText" class="form-control" rows="5" placeholder="Tempel di sini..."></textarea>
+        <button onclick="processInput()" class="btn btn-save">SIMPAN KE ARSIP GAMING 🚀</button>
+    </div>
+
+    <div id="inviteList"></div>
+</div>
+
+<script>
+    let invites = JSON.parse(localStorage.getItem('radaFullArchive')) || [];
+
+    function processInput() {
+        const fullText = document.getElementById('rawText').value;
+        if (!fullText.trim()) return alert("Teksnya kosong, Ci! ✨");
+
+        const dateMatch = fullText.match(/(\d{2})['\-\/\s](\d{2})[\s](\d{4})/);
+        let sortDate = "9999-12-31"; 
+        let displayDate = "Tanpa Tanggal";
+
+        if (dateMatch) {
+            sortDate = `${dateMatch[3]}-${dateMatch[2]}-${dateMatch[1]}`;
+            displayDate = `${dateMatch[1]}-${dateMatch[2]}-${dateMatch[3]}`;
+        }
+
+        invites.push({
+            id: Date.now(),
+            content: fullText,
+            date: sortDate,
+            dateLabel: displayDate,
+            isDone: false
+        });
+
+        document.getElementById('rawText').value = "";
+        saveAndRender();
+    }
+
+    function saveAndRender() {
+        invites.sort((a, b) => new Date(a.date) - new Date(b.date));
+        localStorage.setItem('radaFullArchive', JSON.stringify(invites));
+        render();
+    }
+
+    function toggleDone(id) {
+        const idx = invites.findIndex(i => i.id === id);
+        invites[idx].isDone = !invites[idx].isDone;
+        saveAndRender();
+    }
+
+    function deleteItem(id) {
+        if(confirm("Hapus arsip ini?")) {
+            invites = invites.filter(i => i.id !== id);
+            saveAndRender();
+        }
+    }
+
+    function render() {
+        const list = document.getElementById('inviteList');
+        list.innerHTML = "";
+
+        if (invites.length === 0) {
+            list.innerHTML = `<p class="empty-msg">Belum ada arsip undangan. Mabar yuk! 😴</p>`;
+            return;
+        }
+
+        invites.forEach(item => {
+            list.innerHTML += `
+                <div class="invite-card ${item.isDone ? 'done-card' : ''}">
+                    <div class="card-header-info">
+                        <span class="date-badge"><i class="bi bi-calendar3"></i> ${item.dateLabel}</span>
+                        <small class="text-muted" style="font-size: 0.7rem;">ID: ${item.id}</small>
+                    </div>
+                    <div class="full-text-area">${item.content}</div>
+                    <div class="action-bar">
+                        <button onclick="toggleDone(${item.id})" class="btn btn-sm ${item.isDone ? 'btn-success' : 'btn-outline-success'}">
+                            <i class="bi ${item.isDone ? 'bi-check-circle-fill' : 'bi-check-circle'}"></i> ${item.isDone ? 'SELESAI' : 'DONE'}
+                        </button>
+                        ${item.isDone ? `
+                            <button onclick="deleteItem(${item.id})" class="btn btn-sm btn-danger">
+                                <i class="bi bi-trash3"></i> Hapus
+                            </button>
+                        ` : `
+                            <button class="btn btn-sm btn-secondary" disabled>
+                                <i class="bi bi-lock-fill"></i> Hapus
+                            </button>
+                        `}
+                    </div>
+                </div>
+            `;
+        });
+    }
+
+    render();
+</script>
+
+</body>
+</html>
